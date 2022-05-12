@@ -1,52 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
+function overviewHTML(i) {
+  const mainTyp = allPokemons[i].types[0].type.name;
+  const img = allPokemons[i].sprites.other["official-artwork"].front_default;
+  const name = allPokemons[i].names[5].name;
+  let shownNumber = i;
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="./img/pikachu.png">
-    <title>Pokedex</title>
-    <link rel="stylesheet" href="./css/fonts.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/card.css">
-    <script src="./js/pokedex.js"></script>
-    <script src="./js/template.js"></script>
-    <script src="./js/overview.js"></script>
-</head>
+  shownNumber++;
+  if (shownNumber.toString().length < 2) 
+  shownNumber = "0" + shownNumber;
 
-<body onload="init()">
-    <header>
-        <img class="logo" src="./img/logo_pokemon.png" alt="">
-        <div class="search">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-                <path id="magnifying-glass-regular"
-                    d="M15.757,14.719l-4.189-4.187A6.305,6.305,0,0,0,12.975,6.5a6.514,6.514,0,1,0-2.469,5.092l4.189,4.188a.864.864,0,0,0,.56.22.75.75,0,0,0,.53-.22A.73.73,0,0,0,15.757,14.719ZM1.5,6.5a5,5,0,1,1,5,5A5.007,5.007,0,0,1,1.5,6.5Z"
-                    transform="translate(0)" fill="#666" />
-            </svg>
-            <input type="text" placeholder="Suche dein Pokemon">
+  return /*html*/ `
+    <div class="pokemon-background" style="background-color: rgba(var(--color-${mainTyp}), 0.2);" onclick="showOverlay()">
+            <span class="id-number" style="color: rgba(var(--color-${mainTyp}), 0.25);">
+                ${shownNumber}
+                <span class="pokemon-name" style="  color: rgba(var(--color-${mainTyp}), 1);">
+                    ${name}
+                </span>
+            </span>
+            <div class="category" id="category-id${i}">
+                <!-- load category -->
+            </div>
+            <img class="pokemon-img" src="${img}" alt="">
         </div>
-    </header>
-    <div class="main-container" id="overview">
-        <div class="onload-gifs">
-            <img src="./img/1.gif" alt="">
-            <img src="./img/4.gif" alt="">
-            <img src="./img/7.gif" alt="">
-            <img src="./img/25.gif" alt="">
-        </div>
-        <!-- Overview -->
-    </div>
-    <div class="load-more-button" onclick="showMorePokemons()" >
-        <button id="load-more-btn">Mehr laden</button>
-        <div class="onload-gifs d-none" id="load-more-animation">
-            <img src="./img/1.gif" alt="">
-            <img src="./img/4.gif" alt="">
-            <img src="./img/7.gif" alt="">
-            <img src="./img/25.gif" alt="">
-        </div>
-    </div>
-    <div class="overlay d-none" id="overlay">
-        <div class="pos-rel">
+    `;
+}
+
+function categoryHTML(pokemonCategory) {
+  const categoryName = pokemonCategory.type.name;
+
+  return /*html*/ `
+    <img class="round-img-category" src="./img/typ_icon/${categoryName}.svg" alt="">
+    `;
+}
+
+function overlayHTML(){
+    return /*html*/ `
+    <div class="pos-rel">
             <div class="pokemon-card">
                 <div class="card-header">
                     <div class="bg-color">
@@ -204,7 +192,5 @@
             </div>
             <img class="back-icon" src="./img/arrow-left-to-bracket.svg" alt="" onclick="hideOverlay()">
         </div>
-    </div>
-</body>
-
-</html>
+    `;
+}
