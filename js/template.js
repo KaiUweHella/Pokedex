@@ -9,7 +9,7 @@ function overviewHTML(i) {
   shownNumber = "0" + shownNumber;
 
   return /*html*/ `
-    <div class="pokemon-background" style="background-color: rgba(var(--color-${mainTyp}), 0.2);" onclick="showOverlay()">
+    <div class="pokemon-background" style="background-color: rgba(var(--color-${mainTyp}), 0.2);" onclick="showOverlay(${i})">
             <span class="id-number" style="color: rgba(var(--color-${mainTyp}), 0.25);">
                 ${shownNumber}
                 <span class="pokemon-name" style="  color: rgba(var(--color-${mainTyp}), 1);">
@@ -32,17 +32,26 @@ function categoryHTML(pokemonCategory) {
     `;
 }
 
-function overlayHTML(){
+function overlayHTML(i){
+    const mainTyp = allPokemons[i].types[0].type.name;
+    const img = allPokemons[i].sprites.other["official-artwork"].front_default;
+    const name = allPokemons[i].names[5].name;
+    let shownNumber = i;
+  
+    shownNumber++;
+    if (shownNumber.toString().length < 2) 
+    shownNumber = "0" + shownNumber;
+
     return /*html*/ `
     <div class="pos-rel">
             <div class="pokemon-card">
                 <div class="card-header">
-                    <div class="bg-color">
+                    <div style="background: rgba(var(--color-${mainTyp}), 1)">
                         <div class="pokemon-id-number">
-                            <span class="id-number-card">01 <span class="pokemon-name-card">Bisasam</span></span>
+                            <span class="id-number-card">${shownNumber}<span class="pokemon-name-card">${name}</span></span>
                         </div>
                         <div class="img-pokemon-container">
-                            <img class="img-card" src="./img/bulbasaur.png" alt="">
+                            <img class="img-card" src="${img}" alt="">
                             <img class="angle-left" src="./img/angle-left.svg" alt="">
                             <img class="angle-right" src="./img/angle-right.svg" alt="">
                         </div>
@@ -50,14 +59,14 @@ function overlayHTML(){
                     <!-- ---------------------------- start: small header ----------------------------- -->
                     <div class="bg-color small-header d-none">
                         <div>
-                            <span class="id-number-card">01 <span class="pokemon-name-card">Bisasam</span></span>
+                            <span class="id-number-card">${shownNumber}<span class="pokemon-name-card">${name}</span></span>
                         </div>
-                        <img class="img-card-small" src="./img/bulbasaur.png" alt="">
+                        <img class="img-card-small" src="${img}" alt="">
                         <img class="angle-left-small" src="./img/angle-left.svg" alt="">
                         <img class="angle-right-small" src="./img/angle-right.svg" alt="">
                     </div>
                     <!-- ---------------------------- end: small header ----------------------------- -->
-                    <div class="round-edge"></div>
+                    <div class="round-edge" style="background: rgba(var(--color-${mainTyp})"></div>
                 </div>
                 <div class="info-container">
                     <div class="pokemon-card-category margin-top-12">

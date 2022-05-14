@@ -33,7 +33,6 @@ async function showMorePokemons() {
   showAnimation();
   await loadMorePokemon();
   showBtn();
-  console.log(allPokemons);
   loadOverview();
   loadCategory();
 }
@@ -48,11 +47,11 @@ function showBtn() {
   document.getElementById("load-more-btn").classList.remove("d-none");
 }
 
-function showOverlay() {
+function showOverlay(i) {
   let overlay = document.getElementById("overlay")
   overlay.classList.remove("d-none");
   overlay.innerHTML = '';
-  overlay.innerHTML = overlayHTML();
+  overlay.innerHTML = overlayHTML(i);
 }
 
 function hideOverlay(){
