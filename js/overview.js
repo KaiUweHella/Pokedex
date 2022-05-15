@@ -319,7 +319,7 @@ function loadWeakness(typ) {
 /* -------------------------------------------------------------------------- */
 
 function showNextPokemon(i) {
-  if (i = allPokemons.length) {
+  if ((i+1) == allPokemons.length) {
     hideOverlay();
   } else {
     i++;
