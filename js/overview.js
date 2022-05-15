@@ -71,7 +71,7 @@ function loadCardInfo(i) {
   loadEvolution(i);
   loadDescription(i);
   showStrength(i);
-  showWeakness(i)
+  showWeakness(i);
 }
 
 function loadCardCetgory(i) {
@@ -185,33 +185,66 @@ function loadEvolutionTitle() {
   document.getElementById("evolution").innerHTML = `<h3>Entwicklungen</h3>`;
 }
 
-function loadThreeEvolutions(pokemon){
+function loadThreeEvolutions(pokemon) {
   const firstDevelopmentName = pokemon.evolution.chain.species.name;
-  const secondDevelopmentName = pokemon.evolution.chain["evolves_to"][0].species.name;
-  const thirdDevelopmentName = pokemon.evolution.chain["evolves_to"][0]["evolves_to"][0].species.name;
+  const secondDevelopmentName =
+    pokemon.evolution.chain["evolves_to"][0].species.name;
+  const thirdDevelopmentName =
+    pokemon.evolution.chain["evolves_to"][0]["evolves_to"][0].species.name;
 
   for (let j = 0; j < allPokemons.length; j++) {
     const name = allPokemons[j].name;
     const mainTyp = allPokemons[j].types[0].type.name;
     const img = allPokemons[j].sprites.other["official-artwork"].front_default;
-  
-    if (name == firstDevelopmentName) {document.getElementById("evolution-img").innerHTML += evolutionHTML(img, mainTyp, j);}
-    if (name == secondDevelopmentName) {document.getElementById("evolution-img").innerHTML += evolutionHTML(img, mainTyp, j);}
-    if (name == thirdDevelopmentName) {document.getElementById("evolution-img").innerHTML += evolutionHTML(img, mainTyp, j);}
+
+    if (name == firstDevelopmentName) {
+      document.getElementById("evolution-img").innerHTML += evolutionHTML(
+        img,
+        mainTyp,
+        j
+      );
+    }
+    if (name == secondDevelopmentName) {
+      document.getElementById("evolution-img").innerHTML += evolutionHTML(
+        img,
+        mainTyp,
+        j
+      );
+    }
+    if (name == thirdDevelopmentName) {
+      document.getElementById("evolution-img").innerHTML += evolutionHTML(
+        img,
+        mainTyp,
+        j
+      );
+    }
   }
 }
 
-function loadTwoEvolutions(pokemon){
+function loadTwoEvolutions(pokemon) {
   const firstDevelopmentName = pokemon.evolution.chain.species.name;
-  const secondDevelopmentName = pokemon.evolution.chain["evolves_to"][0].species.name;
+  const secondDevelopmentName =
+    pokemon.evolution.chain["evolves_to"][0].species.name;
 
   for (let j = 0; j < allPokemons.length; j++) {
     const name = allPokemons[j].name;
     const mainTyp = allPokemons[j].types[0].type.name;
     const img = allPokemons[j].sprites.other["official-artwork"].front_default;
 
-    if (name == firstDevelopmentName) {document.getElementById("evolution-img").innerHTML += evolutionHTML(img, mainTyp, j);}
-    if (name == secondDevelopmentName) {document.getElementById("evolution-img").innerHTML += evolutionHTML(img, mainTyp, j);}
+    if (name == firstDevelopmentName) {
+      document.getElementById("evolution-img").innerHTML += evolutionHTML(
+        img,
+        mainTyp,
+        j
+      );
+    }
+    if (name == secondDevelopmentName) {
+      document.getElementById("evolution-img").innerHTML += evolutionHTML(
+        img,
+        mainTyp,
+        j
+      );
+    }
   }
 }
 
@@ -219,35 +252,38 @@ function loadTwoEvolutions(pokemon){
 /*                              load description                              */
 /* -------------------------------------------------------------------------- */
 
-function loadDescription(i){
+function loadDescription(i) {
   const description = allPokemons[i]["flavor_text_entries"][41]["flavor_text"];
 
-  document.getElementById("description").innerHTML = `<span class="description-text">${description}</span>`;
+  document.getElementById(
+    "description"
+  ).innerHTML = `<span class="description-text">${description}</span>`;
 }
 
 /* -------------------------------------------------------------------------- */
 /*                                load strength                               */
 /* -------------------------------------------------------------------------- */
 
-function showStrength(i){
+function showStrength(i) {
   const mainTyp = allPokemons[i].types[0].type.name;
 
   for (let j = 0; j < allTypes.length; j++) {
     const typ = allTypes[j];
-    if(typ.name == mainTyp){
+    if (typ.name == mainTyp) {
       loadStrength(typ);
-      if(typ["damage_relations"]["double_damage_to"] == ""){
+      if (typ["damage_relations"]["double_damage_to"] == "") {
         document.getElementById("strength-container").classList.add("d-none");
       }
     }
   }
 }
 
-function loadStrength(typ){
-  let array = typ["damage_relations"]["double_damage_to"]
+function loadStrength(typ) {
+  let array = typ["damage_relations"]["double_damage_to"];
   for (let i = 0; i < array.length; i++) {
-    const doubleDamageTo = array[i].name
-    document.getElementById("strength").innerHTML += strengthHTML(doubleDamageTo);
+    const doubleDamageTo = array[i].name;
+    document.getElementById("strength").innerHTML +=
+      strengthHTML(doubleDamageTo);
   }
 }
 
@@ -255,24 +291,47 @@ function loadStrength(typ){
 /*                                load weakness                               */
 /* -------------------------------------------------------------------------- */
 
-function showWeakness(i){
+function showWeakness(i) {
   const mainTyp = allPokemons[i].types[0].type.name;
 
   for (let j = 0; j < allTypes.length; j++) {
     const typ = allTypes[j];
-    if(typ.name == mainTyp){
+    if (typ.name == mainTyp) {
       loadWeakness(typ);
-      if(typ["damage_relations"]["double_damage_from"] == ""){
+      if (typ["damage_relations"]["double_damage_from"] == "") {
         document.getElementById("strength-container").classList.add("d-none");
       }
     }
   }
 }
 
-function loadWeakness(typ){
-  let array = typ["damage_relations"]["double_damage_from"]
+function loadWeakness(typ) {
+  let array = typ["damage_relations"]["double_damage_from"];
   for (let i = 0; i < array.length; i++) {
-    const doubleDamageFrom = array[i].name
-    document.getElementById("weakness").innerHTML += strengthHTML(doubleDamageFrom);
+    const doubleDamageFrom = array[i].name;
+    document.getElementById("weakness").innerHTML +=
+      strengthHTML(doubleDamageFrom);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              show next pokemon                             */
+/* -------------------------------------------------------------------------- */
+
+function showNextPokemon(i) {
+  if (i = allPokemons.length) {
+    hideOverlay();
+  } else {
+    i++;
+    loadOverlay(i);
+  }
+}
+
+function showPokemonBefore(i) {
+  if (i <= 1) {
+    hideOverlay();
+  } else {
+    i--;
+    loadOverlay(i);
   }
 }

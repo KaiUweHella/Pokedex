@@ -51,8 +51,8 @@ function overlayHTML(i) {
                         </div>
                         <div class="img-pokemon-container">
                             <img class="img-card" src="${img}" alt="">
-                            <img class="angle-left" src="./img/angle-left.svg" alt="">
-                            <img class="angle-right" src="./img/angle-right.svg" alt="">
+                            <img class="angle-left" onclick="showPokemonBefore(${i})" src="./img/angle-left.svg" alt="">
+                            <img class="angle-right" onclick="showNextPokemon(${i})" src="./img/angle-right.svg" alt="">
                         </div>
                     </div>
                     <!-- ---------------------------- start: small header ----------------------------- -->
