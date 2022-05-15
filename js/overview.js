@@ -2,6 +2,7 @@ async function init() {
   await loadPokemon();
   loadOverview();
   loadCategory();
+  await loadTypes();
 }
 
 function loadOverview() {
@@ -68,6 +69,9 @@ function loadCardInfo(i) {
   loadPokemonInfo(i);
   loadStats(i);
   loadEvolution(i);
+  loadDescription(i);
+  showStrength(i);
+  showWeakness(i)
 }
 
 function loadCardCetgory(i) {
@@ -208,5 +212,67 @@ function loadTwoEvolutions(pokemon){
 
     if (name == firstDevelopmentName) {document.getElementById("evolution-img").innerHTML += evolutionHTML(img, mainTyp, j);}
     if (name == secondDevelopmentName) {document.getElementById("evolution-img").innerHTML += evolutionHTML(img, mainTyp, j);}
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                              load description                              */
+/* -------------------------------------------------------------------------- */
+
+function loadDescription(i){
+  const description = allPokemons[i]["flavor_text_entries"][41]["flavor_text"];
+
+  document.getElementById("description").innerHTML = `<span class="description-text">${description}</span>`;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                load strength                               */
+/* -------------------------------------------------------------------------- */
+
+function showStrength(i){
+  const mainTyp = allPokemons[i].types[0].type.name;
+
+  for (let j = 0; j < allTypes.length; j++) {
+    const typ = allTypes[j];
+    if(typ.name == mainTyp){
+      loadStrength(typ);
+      if(typ["damage_relations"]["double_damage_to"] == ""){
+        document.getElementById("strength-container").classList.add("d-none");
+      }
+    }
+  }
+}
+
+function loadStrength(typ){
+  let array = typ["damage_relations"]["double_damage_to"]
+  for (let i = 0; i < array.length; i++) {
+    const doubleDamageTo = array[i].name
+    document.getElementById("strength").innerHTML += strengthHTML(doubleDamageTo);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                load weakness                               */
+/* -------------------------------------------------------------------------- */
+
+function showWeakness(i){
+  const mainTyp = allPokemons[i].types[0].type.name;
+
+  for (let j = 0; j < allTypes.length; j++) {
+    const typ = allTypes[j];
+    if(typ.name == mainTyp){
+      loadWeakness(typ);
+      if(typ["damage_relations"]["double_damage_from"] == ""){
+        document.getElementById("strength-container").classList.add("d-none");
+      }
+    }
+  }
+}
+
+function loadWeakness(typ){
+  let array = typ["damage_relations"]["double_damage_from"]
+  for (let i = 0; i < array.length; i++) {
+    const doubleDamageFrom = array[i].name
+    document.getElementById("weakness").innerHTML += strengthHTML(doubleDamageFrom);
   }
 }

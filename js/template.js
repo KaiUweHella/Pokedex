@@ -88,50 +88,20 @@ function overlayHTML(i) {
                     </div>
                     <div class="description dp-flex">
                         <h3>Beschreibung</h3>
-                        <span class="description-text">Bisasam macht gern einmal ein Nickerchen im Sonnenschein. Auf
-                            seinem Rücken trägt es einen Samen. Indem es Sonnenstrahlen aufsaugt, wird er zunehmend
-                            größer.</span>
+                        <div id="description">
+                            <!-- load description -->
+                        </div>
                     </div>
-                    <div class="dp-flex">
+                    <div class="dp-flex" id="strength-container">
                         <h3>Stärke</h3>
-                        <div class="pokemon-card-category">
-                            <div class="category-with-name color-water">
-                                <img class="round-img-category" src="./img/typ_icon/water.svg" alt="">
-                                <span class="card-category-name">Water</span>
-                            </div>
-                            <div class="category-with-name color-ground">
-                                <img class="round-img-category" src="./img/typ_icon/ground.svg" alt="">
-                                <span class="card-category-name">Ground</span>
-                            </div>
-                            <div class="category-with-name color-rock">
-                                <img class="round-img-category" src="./img/typ_icon/rock.svg" alt="">
-                                <span class="card-category-name">Rock</span>
-                            </div>
+                        <div class="pokemon-card-category" id="strength">
+                            <!-- load strength -->
                         </div>
                     </div>
                     <div class="weakness dp-flex">
                         <h3>Schwäche</h3>
-                        <div class="pokemon-card-category">
-                            <div class="category-with-name color-water">
-                                <img class="round-img-category" src="./img/typ_icon/water.svg" alt="">
-                                <span class="card-category-name">Water</span>
-                            </div>
-                            <div class="category-with-name color-ground">
-                                <img class="round-img-category" src="./img/typ_icon/ground.svg" alt="">
-                                <span class="card-category-name">Ground</span>
-                            </div>
-                            <div class="category-with-name color-rock">
-                                <img class="round-img-category" src="./img/typ_icon/rock.svg" alt="">
-                                <span class="card-category-name">Rock</span>
-                            </div>
-                            <div class="category-with-name color-ground">
-                                <img class="round-img-category" src="./img/typ_icon/ground.svg" alt="">
-                                <span class="card-category-name">Ground</span>
-                            </div>
-                            <div class="category-with-name color-rock">
-                                <img class="round-img-category" src="./img/typ_icon/rock.svg" alt="">
-                                <span class="card-category-name">Rock</span>
-                            </div>
+                        <div class="pokemon-card-category" id="weakness">
+                            <!-- load weakness -->
                         </div>
                     </div>
                 </div>
@@ -163,20 +133,40 @@ function infoHTML(content, title) {
     `;
 }
 
-function statsHTML(baseStat, statName, pokemonFirstCategory){
-    return /*html*/ `
+function statsHTML(baseStat, statName, pokemonFirstCategory) {
+  return /*html*/ `
     <div class="each-statistics">
         <span class="stat">${statName}</span>
         <span class="base-stat">${baseStat}</span>
         <div class="progress-bar">
-            <div style="width: ${baseStat/1.5}%; background-color: rgba(var(--color-${pokemonFirstCategory}), 1);"></div>
+            <div style="width: ${
+              baseStat / 1.5
+            }%; background-color: rgba(var(--color-${pokemonFirstCategory}), 1);"></div>
         </div>
     </div>
     `;
 }
 
-function evolutionHTML(img, mainTyp, j){
-    return /*html*/ `  
+function evolutionHTML(img, mainTyp, j) {
+  return /*html*/ `  
         <img class="evolution-img" onclick="showOverlay(${j})" style="background-color: rgba(var(--color-${mainTyp}), 0.3);" src="${img}" alt="">
+    `;
+}
+
+function strengthHTML(i){
+    return /*html*/ `
+    <div class="category-with-name" style="background-color: rgba(var(--color-${i}), 1);">
+        <img class="round-img-category" src="./img/typ_icon/${i}.svg" alt="">
+        <span class="card-category-name">${i}</span>
+    </div>
+    `;
+}
+
+function weaknessHTML(i){
+    return /*html*/ `
+    <div class="category-with-name" style="background-color: rgba(var(--color-${i}), 1);">
+        <img class="round-img-category" src="./img/typ_icon/${i}.svg" alt="">
+        <span class="card-category-name">${i}</span>
+    </div>
     `;
 }

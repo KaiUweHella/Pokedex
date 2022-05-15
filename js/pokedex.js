@@ -1,4 +1,5 @@
 let allPokemons = [];
+let allTypes = [];
 
 async function loadPokemon() {
   for (let i = 1; i <= 30; i++) {
@@ -66,4 +67,14 @@ function removeDuplicateEntries() {
   );
 
   allPokemons = result;
+}
+
+async function loadTypes() {
+  for (let i = 1; i <= 20; i++) {
+    let urlTypes = `https://pokeapi.co/api/v2/type/${i}`;
+    let response = await fetch(urlTypes);
+    let responseAsJson = await response.json();
+
+    allTypes.push(responseAsJson);
+  }
 }
