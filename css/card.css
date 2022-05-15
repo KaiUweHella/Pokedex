@@ -52,6 +52,7 @@
   border-radius: 16px 16px 0 0;
   position: sticky;
   top: 0;
+  z-index: 1000;
 }
 
 .pokemon-id-number {
@@ -85,6 +86,18 @@
   width: 264px;
   height: 264px;
   margin-top: 16px;
+  filter: saturate(1.5);
+  animation: fadeInFromNone 0.5s ease-out;
+}
+
+@keyframes fadeInFromNone {
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
 }
 
 .angle-left {
@@ -204,6 +217,8 @@ h3 {
 }
 
 .base-stat {
+  width: 28px;
+  text-align: center;
   padding-left: 8px;
   padding-bottom: 8px;
   border-left: 1px solid var(--color-light-grey);
@@ -217,8 +232,6 @@ h3 {
 }
 
 .progress-bar > div {
-  background-color: rgba(var(--color-grass), 1);
-  width: 40%;
   height: 8px;
   border-radius: 4px;
 }
@@ -250,10 +263,16 @@ h3 {
 }
 
 .evolution-img {
-  width: 80px;
-  background-color: rgba(var(--color-grass), 0.3);;
+  width: 88px;
   padding: 8px;
   border-radius: 8px;
+  filter: saturate(1.5);
+  cursor: pointer;
+  transition: transform 250ms ease-in-out;
+}
+
+.evolution-img:hover{
+  transform: scale(1.1);
 }
 
 .dp-flex {
