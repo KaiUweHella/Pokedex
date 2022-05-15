@@ -45,7 +45,7 @@ function overlayHTML(i) {
             <div class="pokemon-card">
                 <div class="card-header">
                 <img class="back-icon" src="./img/arrow-left-to-bracket.svg" alt="" onclick="hideOverlay()">
-                    <div style="background: rgba(var(--color-${mainTyp}), 1)">
+                    <div style="background: linear-gradient(0deg, rgba(var(--color-${mainTyp}-gradient), 1) 0%, rgba(var(--color-${mainTyp}), 1) 100%);">
                         <div class="pokemon-id-number">
                             <span class="id-number-card">${shownNumber}<span class="pokemon-name-card">${name}</span></span>
                         </div>
@@ -65,7 +65,7 @@ function overlayHTML(i) {
                         <img class="angle-right-small" src="./img/angle-right.svg" alt="">
                     </div>
                     <!-- ---------------------------- end: small header ----------------------------- -->
-                    <div class="round-edge" style="background: rgba(var(--color-${mainTyp})"></div>
+                    <div class="round-edge" style="background: rgba(var(--color-${mainTyp}-gradient), 1)"></div>
                 </div>
                 <div class="info-container">
                     <div class="pokemon-card-category margin-top-12" id="category-card">

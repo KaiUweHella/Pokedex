@@ -20,6 +20,29 @@
   --color-unknown: 104, 160, 144;
   --color-shadow: 47, 0, 88;
 
+  --color-grass-gradient: 84, 155, 49;
+  --color-poison-gradient: 102, 41, 102;
+  --color-water-gradient: 31, 109, 173;
+  --color-ground-gradient: 183, 75, 21;
+  --color-rock-gradient: 178, 154, 87;
+  --color-normal-gradient: 103, 113, 121;
+  --color-fighting-gradient: 135, 33, 28;
+  --color-flying-gradient: 73, 124, 212;
+  --color-bug-gradient: 82, 122, 0;
+  --color-ghost-gradient: 88, 67, 157;
+  --color-steel-gradient: 130, 132, 155;
+  --color-fire-gradient: 190, 87, 14;
+  --color-electric-gradient: 184, 153, 0;
+  --color-psychic-gradient: 255, 31, 53;
+  --color-ice-gradient: 42, 162, 146;
+  --color-dragon-gradient: 0, 67, 122;
+  --color-dark-gradient: 50, 46, 56;
+  --color-fairy-gradient: 228, 98, 126;
+  --color-unknown-gradient: 71, 113, 101;
+  --color-shadow-gradient: 11, 0, 20;
+
+
+
   --color-white-30: rgba(255, 255, 255, 0.3);
   --color-white: white;
   --color-font: #444444;
