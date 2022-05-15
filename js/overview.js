@@ -324,3 +324,31 @@ function showPokemonBefore(i) {
     loadOverlay(i);
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/*                              scroll varieties                              */
+/* -------------------------------------------------------------------------- */
+
+function leftScroll() {
+  let left = document.getElementById("varieties");
+  left.scrollLeft += 400;
+
+  if (left.scrollLeft >= 0) {
+    document.getElementById("scroll-left").classList.remove("d-none");
+  }
+  if (left.scrollLeft >= 600){
+    document.getElementById("scroll-right").classList.add("d-none");
+  }
+}
+
+function rightScroll() {
+  let right = document.getElementById("varieties");
+  right.scrollLeft -= 400;
+
+  if (right.scrollLeft <= 300) {
+    document.getElementById("scroll-left").classList.add("d-none");
+  }
+  if (right.scrollLeft >= 0) {
+    document.getElementById("scroll-right").classList.remove("d-none");
+  }
+}

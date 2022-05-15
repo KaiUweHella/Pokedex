@@ -52,6 +52,10 @@
   --color-btn-border: #3860AA;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: "Roboto", sans-serif;

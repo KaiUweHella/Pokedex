@@ -104,6 +104,27 @@ function overlayHTML(i) {
                             <!-- load weakness -->
                         </div>
                     </div>
+                    <div class="varieties dp-flex">
+                        <h3>Mega-Entwicklung</h3>
+                        <div class="varieties-container" style="background: rgba(var(--color-${mainTyp}), 0.5)">
+                            <div class="pokemon-card-varieties" id="varieties">
+                                <div class="varieties-element dp-flex">
+                                    <img class="varieties-img" src="./img/charizard-mega-y.png" alt="">
+                                    <span class="varieties-color" style="color: rgba(var(--color-${mainTyp}-gradient), 1)">Mega-Glurak X</span>
+                                </div>
+                                <div class="varieties-element dp-flex">
+                                    <img class="varieties-img" src="./img/charizard-gmax.png" alt="">
+                                    <span class="varieties-color">Mega-Glurak X</span>
+                                </div>
+                                <div class="varieties-element dp-flex">
+                                    <img class="varieties-img" src="./img/charizard-mega-x.png" alt="">
+                                    <span class="varieties-color">Mega-Glurak X</span>
+                                </div>
+                            </div>
+                            <img class="angle-left-varieties d-none" onclick="rightScroll()" id="scroll-left" src="./img/angle-left.svg" alt="">
+                            <img class="angle-right-varieties" onclick="leftScroll()" id="scroll-right" src="./img/angle-right.svg" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
             <div id="catch-pokemon">
