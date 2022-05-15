@@ -14,13 +14,14 @@ async function loadPokemon() {
     let bothResponse = { ...responseAsJson, ...responseSpeciesAsJson };
 
     allPokemons.push(bothResponse);
+    loadEvolutionInfo(i);
   }
 
-  loadEvolutionInfo();
+  removeDuplicateEntries();
 }
 
 async function loadMorePokemon() {
-  let morePokemons = allPokemons.length + 20;
+  let morePokemons = allPokemons.length + 10;
 
   for (let i = allPokemons.length; i <= morePokemons; i++) {
     let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${i}`;

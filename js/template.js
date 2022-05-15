@@ -86,7 +86,7 @@ function overlayHTML(i) {
                     <div class="evolution-images " id="evolution-img">
                         <!-- load evolution -->
                     </div>
-                    <div class="description dp-flex">
+                    <div class="description dp-flex" id="description-container">
                         <h3>Beschreibung</h3>
                         <div id="description">
                             <!-- load description -->

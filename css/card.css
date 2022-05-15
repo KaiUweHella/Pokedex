@@ -31,6 +31,7 @@
 
 .pokemon-card {
   max-width: 400px;
+  min-width: 400px;
   max-height: 820px;
   width: 100%;
   height: 100%;
@@ -169,6 +170,14 @@
   width: 100%;
 }
 
+.info-column:nth-child(3){
+  border-left: 1px solid #efefef;
+}
+
+.info-column:nth-child(2){
+  border-left: 1px solid #efefef;
+}
+
 .info-content {
   font-size: 16px;
   font-weight: bold;
@@ -217,8 +226,8 @@ h3 {
 }
 
 .base-stat {
-  width: 28px;
-  text-align: center;
+  min-width: 24px;
+  text-align: left;
   padding-left: 8px;
   padding-bottom: 8px;
   border-left: 1px solid var(--color-light-grey);
@@ -361,6 +370,7 @@ h3 {
     border-radius: 0;
     max-height: 100vh;
     max-width: 100vw;
+    min-width: 100vw;
   }
 
   .card-header {
