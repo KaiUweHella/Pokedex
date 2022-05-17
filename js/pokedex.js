@@ -1,4 +1,5 @@
 let allPokemons = [];
+let pokemonEvolution = [];
 let allTypes = [];
 
 async function loadPokemon() {
@@ -14,9 +15,7 @@ async function loadPokemon() {
     let bothResponse = { ...responseAsJson, ...responseSpeciesAsJson };
 
     allPokemons.push(bothResponse);
-    loadEvolutionInfo(i);
   }
-
   removeDuplicateEntries();
 }
 
@@ -34,30 +33,146 @@ async function loadMorePokemon() {
     let bothResponse = { ...responseAsJson, ...responseSpeciesAsJson };
 
     allPokemons.push(bothResponse);
-    loadMoreEvolutionInfo(i);
   }
 
   removeDuplicateEntries();
 }
 
-async function loadEvolutionInfo() {
-  for (let i = 0; i < allPokemons.length; i++) {
-    const element = allPokemons[i];
-    let urlEvolution = element["evolution_chain"].url;
+async function loadEvolutions() {
+  await loadChain();
+  await loadEvolutionImg();
+}
+
+async function loadChain() {
+  for (let i = 1; i < 3; i++) {
+    let urlEvolution = `https://pokeapi.co/api/v2/evolution-chain/${i}/`;
     let response = await fetch(urlEvolution);
     let responseAsJson = await response.json();
 
-    element.evolution = responseAsJson;
+    loadEvolutionInName(responseAsJson);
   }
 }
 
-async function loadMoreEvolutionInfo(i) {
-  const element = allPokemons[i];
-  let urlEvolution = element["evolution_chain"].url;
-  let response = await fetch(urlEvolution);
-  let responseAsJson = await response.json();
+function loadEvolutionInName(responseAsJson) {
+  const evolution = responseAsJson;
+  const firstName = evolution.chain.species.name;
+  if (evolution.chain["evolves_to"] != "") {
+    const secondName = evolution.chain["evolves_to"][0].species.name;
 
-  element.evolution = responseAsJson;
+    if (evolution.chain["evolves_to"][0]["evolves_to"] != "") {
+      const thirdName =
+        evolution.chain["evolves_to"][0]["evolves_to"][0].species.name;
+
+      pokemonEvolution.push([
+        {
+          name: firstName,
+        },
+        {
+          name: secondName,
+        },
+        {
+          name: thirdName,
+        },
+      ]);
+    } else {
+      pokemonEvolution.push([
+        {
+          name: firstName,
+        },
+        {
+          name: secondName,
+        },
+      ]);
+    }
+  }
+}
+
+async function loadEvolutionImg() {
+  for (let i = 0; i < pokemonEvolution.length; i++) {
+    const evolution = pokemonEvolution[i];
+    for (let j = 0; j < evolution.length; j++) {
+      const name = evolution[j].name;
+      let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${name}`;
+
+      let response = await fetch(urlPokemon);
+      let responseAsJson = await response.json();
+
+      let imgURL =
+        responseAsJson.sprites.other["official-artwork"].front_default;
+
+      evolution[j].img = imgURL;
+    }
+  }
+}
+
+async function loadMoreEvolutions() {
+  await loadMoreChain();
+  await loadMoreEvolutionImg();
+}
+
+async function loadMoreChain() {
+  let length = pokemonEvolution.length +1;
+  let evolutionLength = pokemonEvolution.length + 10;
+  for (let i = length; i < evolutionLength; i++) {
+    let urlEvolution = `https://pokeapi.co/api/v2/evolution-chain/${i}/`;
+    let response = await fetch(urlEvolution);
+    let responseAsJson = await response.json();
+
+    loadMoreEvolutionInName(responseAsJson);
+  }
+}
+
+function loadMoreEvolutionInName(responseAsJson) {
+  const evolution = responseAsJson;
+  const firstName = evolution.chain.species.name;
+  if (evolution.chain["evolves_to"] != "") {
+    const secondName = evolution.chain["evolves_to"][0].species.name;
+
+    if (evolution.chain["evolves_to"][0]["evolves_to"] != "") {
+      const thirdName =
+        evolution.chain["evolves_to"][0]["evolves_to"][0].species.name;
+
+      pokemonEvolution.push([
+        {
+          name: firstName,
+        },
+        {
+          name: secondName,
+        },
+        {
+          name: thirdName,
+        },
+      ]);
+    } else {
+      pokemonEvolution.push([
+        {
+          name: firstName,
+        },
+        {
+          name: secondName,
+        },
+      ]);
+    }
+  }
+}
+
+async function loadMoreEvolutionImg() {
+  let evolutionOldLength = pokemonEvolution.length - 10;
+  for (let i = evolutionOldLength; i < pokemonEvolution.length; i++) {
+    const evolution = pokemonEvolution[i];
+    for (let j = 0; j < evolution.length; j++) {
+      const name = evolution[j].name;
+      let urlPokemon = `https://pokeapi.co/api/v2/pokemon/${name}`;
+
+      let response = await fetch(urlPokemon);
+      let responseAsJson = await response.json();
+
+      let imgURL =
+        responseAsJson.sprites.other["official-artwork"].front_default;
+
+      evolution[j].img = imgURL;
+    }
+  }
 }
 
 function removeDuplicateEntries() {
@@ -71,11 +186,18 @@ function removeDuplicateEntries() {
 }
 
 async function loadTypes() {
-  for (let i = 1; i <= 20; i++) {
-    let urlTypes = `https://pokeapi.co/api/v2/type/${i}`;
-    let response = await fetch(urlTypes);
-    let responseAsJson = await response.json();
-
-    allTypes.push(responseAsJson);
+  for (let i = 1; i <= 18; i++) {
+    await fillAllTypes(i);
   }
+  for (let i = 10001; i <= 10002; i++) {
+    await fillAllTypes(i);
+  }
+}
+
+async function fillAllTypes(i) {
+  let urlTypes = `https://pokeapi.co/api/v2/type/${i}`;
+  let response = await fetch(urlTypes);
+  let responseAsJson = await response.json();
+
+  allTypes.push(responseAsJson);
 }

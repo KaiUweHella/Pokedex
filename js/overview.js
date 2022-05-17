@@ -3,7 +3,8 @@ async function init() {
   loadOverview();
   loadCategory();
   showBtn();
-  await loadTypes();
+  loadTypes();
+  await loadEvolutions();
 }
 
 function loadOverview() {
@@ -30,6 +31,7 @@ async function showMorePokemons() {
   showBtn();
   loadOverview();
   loadCategory();
+  await loadMoreEvolutions();
 }
 
 function showAnimation() {
@@ -164,74 +166,33 @@ function loadStats(i) {
 
 function loadEvolution(i) {
   const pokemon = allPokemons[i];
-
-  if (pokemon.evolution.chain["evolves_to"] == "") {
-    document.getElementById("evolution").classList.add("d-none");
-    document.getElementById("evolution-img").classList.add("d-none");
-  } else {
-    if (pokemon.evolution.chain["evolves_to"][0]["evolves_to"] != "") {
-      loadEvolutionTitle();
-      loadThreeEvolutions(pokemon);
-    }
-    if (pokemon.evolution.chain["evolves_to"][0]["evolves_to"] == "") {
-      loadEvolutionTitle();
-      loadTwoEvolutions(pokemon);
-    }
-  }
+  const name = pokemon.name;
+  loadEvolutionTitle();
+  showEvolutions(name, pokemon);
 }
 
 function loadEvolutionTitle() {
   document.getElementById("evolution").innerHTML = `<h3>Entwicklungen</h3>`;
 }
 
-function loadThreeEvolutions(pokemon) {
-  const firstName = pokemon.evolution.chain.species.name;
-  const secondName =pokemon.evolution.chain["evolves_to"][0].species.name;
-  const thirdName = pokemon.evolution.chain["evolves_to"][0]["evolves_to"][0].species.name;
+function showEvolutions(name, pokemon) {
+  const mainTyp = pokemon.types[0].type.name;
 
-  for (let j = 0; j < allPokemons.length; j++) {
-    const name = allPokemons[j].name;
-    const mainTyp = allPokemons[j].types[0].type.name;
-    const img = allPokemons[j].sprites.other["official-artwork"].front_default;
-
-    if (name == firstName) {
-      document.getElementById("evolution-img").innerHTML += evolutionHTML(img, mainTyp, j);
-    }
-    if (name == secondName) {
-      document.getElementById("evolution-img").innerHTML += evolutionHTML(img, mainTyp, j);
-    }
-    if (name == thirdName) {
-      document.getElementById("evolution-img").innerHTML += evolutionHTML(img, mainTyp, j);
+  for (let i = 0; i < pokemonEvolution.length; i++) {
+    const evolution = pokemonEvolution[i];
+    for (let j = 0; j < evolution.length; j++) {
+      const evolutionName = evolution[j].name;
+      if(name == evolutionName){
+        for (let k = 0; k < evolution.length; k++) {
+          const evolutionPos = evolution[k];
+          document.getElementById("evolution-img").innerHTML += evolutionHTML(evolutionPos, mainTyp);
+        }
+      }
     }
   }
 }
 
-function loadTwoEvolutions(pokemon) {
-  const firstDevelopmentName = pokemon.evolution.chain.species.name;
-  const secondDevelopmentName =
-    pokemon.evolution.chain["evolves_to"][0].species.name;
 
-  for (let j = 0; j < allPokemons.length; j++) {
-    const name = allPokemons[j].name;
-    const mainTyp = allPokemons[j].types[0].type.name;
-    const img = allPokemons[j].sprites.other["official-artwork"].front_default;
-
-    if (name == firstDevelopmentName) {
-      document.getElementById("evolution-img").innerHTML += evolutionHTML(
-        img,
-        mainTyp,
-        j
-      );
-    }
-    if (name == secondDevelopmentName) {
-      document.getElementById("evolution-img").innerHTML += evolutionHTML(
-        img,
-        mainTyp,
-        j
-      );
-    }
-  }
-}
 
 /* -------------------------------------------------------------------------- */
 /*                              load description                              */

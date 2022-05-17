@@ -168,9 +168,9 @@ function statsHTML(baseStat, statName, pokemonFirstCategory) {
     `;
 }
 
-function evolutionHTML(img, mainTyp, j) {
+function evolutionHTML(evolution, mainTyp) {
   return /*html*/ `  
-        <img class="evolution-img" onclick="showOverlay(${j})" style="background-color: rgba(var(--color-${mainTyp}), 0.3);" src="${img}" alt="">
+        <img class="evolution-img" style="background-color: rgba(var(--color-${mainTyp}), 0.3);" src="${evolution.img}" alt="">
     `;
 }
 

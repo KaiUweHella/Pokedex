@@ -325,7 +325,7 @@ h3 {
 .pokemon-card-varieties {
   display: flex;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch; 
+  -webkit-overflow-scrolling: touch;
 }
 
 .varieties-color {
@@ -369,10 +369,8 @@ h3 {
   opacity: 0.9;
 }
 
-.stats{
+#stats {
   width: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 /* ------------------------------ small header ------------------------------ */
@@ -434,7 +432,7 @@ h3 {
   }
 
   .pokemon-card-varieties {
-    overflow-x: scroll; 
+    overflow-x: scroll;
   }
 
   .varieties-container {
@@ -476,11 +474,11 @@ h3 {
     width: 100%;
   }
 
-  .each-statistics{
+  .each-statistics {
     width: 300px;
   }
 
-  .stat{
+  .stat {
     width: 128px;
   }
 
