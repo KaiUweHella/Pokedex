@@ -104,7 +104,7 @@ function overlayHTML(i) {
                             <!-- load weakness -->
                         </div>
                     </div>
-                    <div class="varieties dp-flex">
+                    <div class="varieties dp-flex d-none">
                         <h3>Mega-Entwicklung</h3>
                         <div class="varieties-container" style="background: rgba(var(--color-${mainTyp}), 0.5)">
                             <div class="pokemon-card-varieties" id="varieties">
