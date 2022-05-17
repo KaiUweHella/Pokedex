@@ -1,7 +1,7 @@
 async function init() {
   await loadPokemon();
-  await loadEvolutions();
   await loadTypes();
+  await loadEvolutions();
   loadOverview();
   loadCategory();
   showBtn();
@@ -28,10 +28,10 @@ function loadCategory() {
 async function showMorePokemons() {
   showAnimation();
   await loadMorePokemon();
+  await loadMoreEvolutions();
   showBtn();
   loadOverview();
   loadCategory();
-  await loadMoreEvolutions();
 }
 
 function showAnimation() {
