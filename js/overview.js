@@ -1,10 +1,10 @@
 async function init() {
   await loadPokemon();
+  await loadEvolutions();
+  await loadTypes();
   loadOverview();
   loadCategory();
   showBtn();
-  loadTypes();
-  await loadEvolutions();
 }
 
 function loadOverview() {
@@ -182,17 +182,18 @@ function showEvolutions(name, pokemon) {
     const evolution = pokemonEvolution[i];
     for (let j = 0; j < evolution.length; j++) {
       const evolutionName = evolution[j].name;
-      if(name == evolutionName){
+      if (name == evolutionName) {
         for (let k = 0; k < evolution.length; k++) {
           const evolutionPos = evolution[k];
-          document.getElementById("evolution-img").innerHTML += evolutionHTML(evolutionPos, mainTyp);
+          document.getElementById("evolution-img").innerHTML += evolutionHTML(
+            evolutionPos,
+            mainTyp
+          );
         }
       }
     }
   }
 }
-
-
 
 /* -------------------------------------------------------------------------- */
 /*                              load description                              */
@@ -297,7 +298,7 @@ function leftScroll() {
   if (left.scrollLeft >= 0) {
     document.getElementById("scroll-left").classList.remove("d-none");
   }
-  if (left.scrollLeft >= 600){
+  if (left.scrollLeft >= 600) {
     document.getElementById("scroll-right").classList.add("d-none");
   }
 }
