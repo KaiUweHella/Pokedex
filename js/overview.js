@@ -132,6 +132,7 @@ function loadStats(i) {
     const pokemonFirstCategory = pokemon.types[0].type.name;
     const baseStat = pokemonStats["base_stat"];
     let statName = pokemonStats.stat.name;
+    let baseStatWidth = pokemonStats["base_stat"];
 
     if (statName == "hp") {
       statName = "KP";
@@ -152,10 +153,15 @@ function loadStats(i) {
       statName = "INIT";
     }
 
+    if(baseStat >= 100){
+      baseStatWidth = 100
+    }
+
     document.getElementById("stats").innerHTML += statsHTML(
       baseStat,
       statName,
-      pokemonFirstCategory
+      pokemonFirstCategory,
+      baseStatWidth
     );
   }
 }
@@ -167,12 +173,31 @@ function loadStats(i) {
 function loadEvolution(i) {
   const pokemon = allPokemons[i];
   const name = pokemon.name;
-  loadEvolutionTitle();
   showEvolutions(name, pokemon);
+  addStyle(name);
 }
 
 function loadEvolutionTitle() {
   document.getElementById("evolution").innerHTML = `<h3>Entwicklungen</h3>`;
+}
+
+function addStyle(name) {
+  for (let i = 0; i < pokemonEvolution.length; i++) {
+    const evolution = pokemonEvolution[i];
+    for (let j = 0; j < evolution.length; j++) {
+      const evolutionName = evolution[j].name;
+      if (name == evolutionName) {
+        if (evolution.length > 3) {
+          document
+            .getElementById("evolution-img")
+            .classList.remove("evolution-images");
+          document
+            .getElementById("evolution-img")
+            .classList.add("evolution-more-images");
+        }
+      }
+    }
+  }
 }
 
 function showEvolutions(name, pokemon) {
@@ -185,6 +210,7 @@ function showEvolutions(name, pokemon) {
       if (name == evolutionName) {
         for (let k = 0; k < evolution.length; k++) {
           const evolutionPos = evolution[k];
+          loadEvolutionTitle();
           document.getElementById("evolution-img").innerHTML += evolutionHTML(
             evolutionPos,
             mainTyp

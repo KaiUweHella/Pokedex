@@ -44,7 +44,7 @@ async function loadEvolutions() {
 }
 
 async function loadChain() {
-  for (let i = 1; i < 20; i++) {
+  for (let i = 1; i < 40; i++) {
     let urlEvolution = `https://pokeapi.co/api/v2/evolution-chain/${i}/`;
     let response = await fetch(urlEvolution);
     let responseAsJson = await response.json();
@@ -57,9 +57,16 @@ function loadEvolutionInName(responseAsJson) {
   const evolution = responseAsJson;
   const firstName = evolution.chain.species.name;
   if (evolution.chain["evolves_to"] != "") {
-    const secondName = evolution.chain["evolves_to"][0].species.name;
-
-    if (evolution.chain["evolves_to"][0]["evolves_to"] != "") {
+    let secondName = evolution.chain["evolves_to"][0].species.name;
+    if (evolution.chain["evolves_to"][0]["evolves_to"] == "") {
+      let secondName = testArray(evolution);
+      pokemonEvolution.push([
+        {
+          name: firstName,
+        },
+        ...secondName,
+      ]);
+    } else {
       const thirdName =
         evolution.chain["evolves_to"][0]["evolves_to"][0].species.name;
 
@@ -74,17 +81,19 @@ function loadEvolutionInName(responseAsJson) {
           name: thirdName,
         },
       ]);
-    } else {
-      pokemonEvolution.push([
-        {
-          name: firstName,
-        },
-        {
-          name: secondName,
-        },
-      ]);
     }
   }
+}
+
+function testArray(evolution) {
+  let secondName = [];
+  for (let i = 0; i < evolution.chain["evolves_to"].length; i++) {
+    const pokemonName = evolution.chain["evolves_to"][i].species.name;
+
+    secondName.push({ name: pokemonName });
+  }
+
+  return secondName;
 }
 
 async function loadEvolutionImg() {
@@ -108,11 +117,16 @@ async function loadEvolutionImg() {
 async function loadMoreEvolutions() {
   await loadMoreChain();
   await loadMoreEvolutionImg();
+  loadNumber = loadNumber + 10;
+  console.log(loadNumber)
 }
 
+let loadNumber = 40;
+
 async function loadMoreChain() {
-  let length = pokemonEvolution.length +1;
-  let evolutionLength = pokemonEvolution.length + 10;
+  let length = loadNumber +1;
+  let evolutionLength = loadNumber + 10;
+  console.log(length, evolutionLength);
   for (let i = length; i < evolutionLength; i++) {
     let urlEvolution = `https://pokeapi.co/api/v2/evolution-chain/${i}/`;
     let response = await fetch(urlEvolution);
@@ -126,9 +140,16 @@ function loadMoreEvolutionInName(responseAsJson) {
   const evolution = responseAsJson;
   const firstName = evolution.chain.species.name;
   if (evolution.chain["evolves_to"] != "") {
-    const secondName = evolution.chain["evolves_to"][0].species.name;
-
-    if (evolution.chain["evolves_to"][0]["evolves_to"] != "") {
+    let secondName = evolution.chain["evolves_to"][0].species.name;
+    if (evolution.chain["evolves_to"][0]["evolves_to"] == "") {
+      let secondName = testArray(evolution);
+      pokemonEvolution.push([
+        {
+          name: firstName,
+        },
+        ...secondName,
+      ]);
+    } else {
       const thirdName =
         evolution.chain["evolves_to"][0]["evolves_to"][0].species.name;
 
@@ -143,21 +164,13 @@ function loadMoreEvolutionInName(responseAsJson) {
           name: thirdName,
         },
       ]);
-    } else {
-      pokemonEvolution.push([
-        {
-          name: firstName,
-        },
-        {
-          name: secondName,
-        },
-      ]);
     }
   }
 }
 
 async function loadMoreEvolutionImg() {
-  let evolutionOldLength = pokemonEvolution.length - 10;
+  let evolutionOldLength = pokemonEvolution.length-10;
+
   for (let i = evolutionOldLength; i < pokemonEvolution.length; i++) {
     const evolution = pokemonEvolution[i];
     for (let j = 0; j < evolution.length; j++) {

@@ -154,14 +154,14 @@ function infoHTML(content, title) {
     `;
 }
 
-function statsHTML(baseStat, statName, pokemonFirstCategory) {
+function statsHTML(baseStat, statName, pokemonFirstCategory, baseStatWidth) {
   return /*html*/ `
     <div class="each-statistics">
         <span class="stat">${statName}</span>
         <span class="base-stat">${baseStat}</span>
         <div class="progress-bar">
             <div style="width: ${
-              baseStat / 1.5
+              baseStatWidth
             }%; background-color: rgba(var(--color-${pokemonFirstCategory}), 1);"></div>
         </div>
     </div>
