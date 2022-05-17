@@ -44,7 +44,7 @@ async function loadEvolutions() {
 }
 
 async function loadChain() {
-  for (let i = 1; i < 20; i++) {
+  for (let i = 1; i < 10; i++) {
     let urlEvolution = `https://pokeapi.co/api/v2/evolution-chain/${i}/`;
     let response = await fetch(urlEvolution);
     let responseAsJson = await response.json();
