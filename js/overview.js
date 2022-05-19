@@ -202,7 +202,6 @@ function addStyle(name) {
 
 function showEvolutions(name, pokemon) {
   const mainTyp = pokemon.types[0].type.name;
-
   for (let i = 0; i < pokemonEvolution.length; i++) {
     const evolution = pokemonEvolution[i];
     for (let j = 0; j < evolution.length; j++) {
@@ -296,8 +295,9 @@ function loadWeakness(typ) {
 /* -------------------------------------------------------------------------- */
 
 function showNextPokemon(i) {
-  if (i + 1 == allPokemons.length) {
-    hideOverlay();
+  if (i + 1 >= allPokemons.length) {
+    i = 0;
+    loadOverlay(i);
   } else {
     i++;
     loadOverlay(i);

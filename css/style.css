@@ -157,7 +157,7 @@ div{
   margin: 24px 0 32px 0;
 }
 
-button{
+.btn-primary{
   font-family: "Roboto", sans-serif;
   padding: 8px 32px ;
   font-size: 16px;
@@ -170,8 +170,24 @@ button{
   transition: transform 250ms ease-in-out;
 }
 
-button:hover{
+.btn-primary:hover{
   transform: scale(1.05);
+}
+
+.btn-secondary{
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #444444;
+  background-color: transparent;
+  border: 0;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: color 100ms ease-in-out;
+}
+
+.btn-secondary:hover{
+  color: var(--color-btn-bg);
 }
 
 .overflow-hidden{
