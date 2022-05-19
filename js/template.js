@@ -127,7 +127,7 @@ function overlayHTML(i) {
                     </div>
                 </div>
             </div>
-            <div id="catch-pokemon">
+            <div id="catch-pokemon" class="d-none">
                 <img id="open-ball" src="./img/open_pokeball.png" alt="">
             </div>
         </div>
