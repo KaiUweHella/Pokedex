@@ -191,3 +191,14 @@ function weaknessHTML(i){
     </div>
     `;
 }
+
+function loadHTML(){
+    return /*html*/ `
+        <div class="onload-gifs">
+            <img src="./img/1.gif" alt="">
+            <img src="./img/4.gif" alt="">
+            <img src="./img/7.gif" alt="">
+            <img src="./img/25.gif" alt="">
+        </div>
+    `;
+}

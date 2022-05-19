@@ -213,6 +213,7 @@ async function loadSearch() {
     alert('Bitte gebe etwas ein');
     return
   }  
+  showLoadingScreen();
   let nameOrId = search.toLowerCase();
   let responseAsJson = await loadPokemonAPI(nameOrId);
   let responseSpeciesAsJson = await loadPokemonSpeciesAPI(nameOrId);

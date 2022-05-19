@@ -25,6 +25,11 @@ function loadCategory() {
   }
 }
 
+function showLoadingScreen(){
+  document.getElementById("overlay").classList.remove("d-none");
+  document.getElementById("overlay").innerHTML = loadHTML();
+}
+
 async function showMorePokemons() {
   showAnimation();
   await loadMorePokemon();
