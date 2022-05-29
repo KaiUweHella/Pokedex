@@ -1,0 +1,12 @@
+.square {
+    animation: wipe-enter 1s infinite;
+  }
+
+@keyframes wipe-enter {
+	0% {
+		transform: scale(0, .025);
+	}
+	50% {
+		transform: scale(1, .025);
+	}
+}

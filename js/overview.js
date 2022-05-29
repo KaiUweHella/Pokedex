@@ -25,7 +25,7 @@ function loadCategory() {
   }
 }
 
-function showLoadingScreen(){
+function showLoadingScreen() {
   document.getElementById("overlay").classList.remove("d-none");
   document.getElementById("overlay").innerHTML = loadHTML();
 }
@@ -73,6 +73,18 @@ function loadCardInfo(i) {
   loadDescription(i);
   showStrength(i);
   showWeakness(i);
+  const scrollDemo = document.querySelector(".info-container");
+  const header = document.getElementById("card-header");
+
+
+    scrollDemo.addEventListener(
+      "scroll",
+      function () {
+        header.classList.add("square");
+      },
+      { passive: true }
+    );
+  
 }
 
 function loadCardCetgory(i) {
@@ -158,8 +170,8 @@ function loadStats(i) {
       statName = "INIT";
     }
 
-    if(baseStat >= 100){
-      baseStatWidth = 100
+    if (baseStat >= 100) {
+      baseStatWidth = 100;
     }
 
     document.getElementById("stats").innerHTML += statsHTML(

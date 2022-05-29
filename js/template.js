@@ -41,11 +41,11 @@ function overlayHTML(i) {
   if (shownNumber.toString().length < 2) shownNumber = "0" + shownNumber;
 
   return /*html*/ `
-    <div class="pos-rel">
+    <div class="pos-rel" onload="animationOnload()">
             <div class="pokemon-card">
-                <div class="card-header">
+                <div class="card-header" id="card-header">
                 <img class="back-icon" src="./img/arrow-left-to-bracket.svg" alt="" onclick="hideOverlay()">
-                    <div style="background: linear-gradient(0deg, rgba(var(--color-${mainTyp}-gradient), 1) 0%, rgba(var(--color-${mainTyp}), 1) 100%);">
+                    <div style="background: linear-gradient(0deg, rgba(var(--color-${mainTyp}-gradient), 1) 0%, rgba(var(--color-${mainTyp}), 1) 100%); border-radius: 16px 16px 0 0;">
                         <div class="pokemon-id-number">
                             <span class="id-number-card">${shownNumber}<span class="pokemon-name-card">${name}</span></span>
                         </div>
@@ -67,7 +67,7 @@ function overlayHTML(i) {
                     <!-- ---------------------------- end: small header ----------------------------- -->
                     <div class="round-edge" style="background: rgba(var(--color-${mainTyp}-gradient), 1)"></div>
                 </div>
-                <div class="info-container">
+                <div class="info-container" id="info-container">
                     <div class="pokemon-card-category margin-top-12" id="category-card">
                         <!-- load category -->
                     </div>

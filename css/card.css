@@ -39,19 +39,11 @@
   border-radius: 16px;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.pokemon-card::-webkit-scrollbar {
-  display: none;
 }
 
 .card-header {
   width: 100%;
   border-radius: 16px 16px 0 0;
-  position: sticky;
   top: 0;
   z-index: 1000;
 }
@@ -131,8 +123,19 @@
   width: 100%;
   height: 16px;
   border-radius: 0 0 100% 100%;
-  position: sticky;
 }
+
+.info-container{
+  overflow: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+.info-container::-webkit-scrollbar {
+  display: none;
+}
+
 
 .pokemon-card-category {
   display: flex;
