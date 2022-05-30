@@ -23,6 +23,7 @@
   top: 32px;
   left: 20px;
   cursor: pointer;
+  z-index: 1001;
 }
 
 .back-icon:hover {
@@ -75,6 +76,7 @@
   position: relative;
 }
 
+
 .img-card {
   width: 264px;
   height: 264px;
@@ -82,6 +84,7 @@
   filter: saturate(1.5);
   animation: fadeInFromNone 0.5s ease-out;
 }
+
 
 @keyframes fadeInFromNone {
   0% {
@@ -400,54 +403,6 @@ h3 {
 
 #stats {
   width: 100%;
-}
-
-/* ------------------------------ small header ------------------------------ */
-
-.small-header {
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  padding: 8px 40px 8px 40px;
-}
-
-.img-card-small {
-  width: 88px;
-  height: 88px;
-}
-
-.angle-left-small {
-  position: absolute;
-  width: 16px;
-  left: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0.3;
-  cursor: pointer;
-}
-
-.angle-left-small:hover {
-  opacity: 0.8;
-}
-
-.angle-right-small {
-  position: absolute;
-  width: 16px;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  opacity: 0.3;
-  cursor: pointer;
-}
-
-.angle-right-small:hover {
-  opacity: 0.8;
-}
-
-/* -------------------------------- animation ------------------------------- */
-
-.small-card-header {
-  height: 108px;
 }
 
 /* ------------------------------ Small Devices ----------------------------- */

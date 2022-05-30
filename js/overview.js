@@ -73,18 +73,45 @@ function loadCardInfo(i) {
   loadDescription(i);
   showStrength(i);
   showWeakness(i);
-  const scrollDemo = document.querySelector(".info-container");
-  const header = document.getElementById("card-header");
+  animation();
+}
 
+function animation(){
+  const scroller = document.querySelector("#info-container");
 
-    scrollDemo.addEventListener(
-      "scroll",
-      function () {
-        header.classList.add("square");
-      },
-      { passive: true }
-    );
-  
+  scroller.addEventListener("scroll", (event) => {
+    if (scroller.scrollTop <= 10) {
+      normalHeader();
+      return;
+    }
+    smallHeader();
+  });
+}
+
+function normalHeader(){
+  document.querySelector('.img-card').classList.remove('small-img-animation');
+  document.querySelector('#big-header').classList.remove('small-header');
+  document.querySelector('#id-number').classList.add('pokemon-id-number');
+  document.querySelector('#img-container').classList.add('img-pokemon-container');
+  document.querySelector('#id-number').classList.remove('pokemon-id-number-small');
+  document.querySelector('.angle-left-small').classList.add('angle-left');
+  document.querySelector('.angle-left').classList.remove('angle-left-small');
+  document.querySelector('.angle-right-small').classList.add('angle-right');
+  document.querySelector('.angle-right').classList.remove('angle-right-small');
+  document.querySelector('.back-icon').classList.remove('back-icon-small');
+}
+
+function smallHeader(){
+  document.querySelector('.img-card').classList.add('small-img-animation');
+  document.querySelector('#big-header').classList.add('small-header');
+  document.querySelector('#id-number').classList.remove('pokemon-id-number');
+  document.querySelector('#img-container').classList.remove('img-pokemon-container');
+  document.querySelector('#id-number').classList.add('pokemon-id-number-small');
+  document.querySelector('.angle-left').classList.add('angle-left-small');
+  document.querySelector('.angle-left-small').classList.remove('angle-left');
+  document.querySelector('.angle-right').classList.add('angle-right-small');
+  document.querySelector('.angle-right-small').classList.remove('angle-right');
+  document.querySelector('.back-icon').classList.add('back-icon-small');
 }
 
 function loadCardCetgory(i) {

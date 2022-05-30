@@ -44,25 +44,27 @@ function overlayHTML(i) {
     <div class="pos-rel" onload="animationOnload()">
             <div class="pokemon-card">
                 <div class="card-header" id="card-header">
-                <img class="back-icon" src="./img/arrow-left-to-bracket.svg" alt="" onclick="hideOverlay()">
-                    <div style="background: linear-gradient(0deg, rgba(var(--color-${mainTyp}-gradient), 1) 0%, rgba(var(--color-${mainTyp}), 1) 100%); border-radius: 16px 16px 0 0;">
-                        <div class="pokemon-id-number">
+                    <img class="back-icon" src="./img/arrow-left-to-bracket.svg" alt="" onclick="hideOverlay()">
+                    <div id="big-header" style="background: linear-gradient(0deg, rgba(var(--color-${mainTyp}-gradient), 1) 0%, rgba(var(--color-${mainTyp}), 1) 100%); border-radius: 16px 16px 0 0;">
+                        <div class="pokemon-id-number" id="id-number">
                             <span class="id-number-card">${shownNumber}<span class="pokemon-name-card">${name}</span></span>
                         </div>
-                        <div class="img-pokemon-container">
+                        <div class="img-pokemon-container" id="img-container">
                             <img class="img-card" src="${img}" alt="">
                             <img class="angle-left" onclick="showPokemonBefore(${i})" src="./img/angle-left.svg" alt="">
                             <img class="angle-right" onclick="showNextPokemon(${i})" src="./img/angle-right.svg" alt="">
                         </div>
                     </div>
                     <!-- ---------------------------- start: small header ----------------------------- -->
-                    <div class="bg-color small-header d-none">
+                    <div class="small-header d-none" id="small-header" style="background: linear-gradient(0deg, rgba(var(--color-${mainTyp}-gradient), 1) 0%, rgba(var(--color-${mainTyp}), 1) 100%); border-radius: 16px 16px 0 0;">
                         <div>
                             <span class="id-number-card">${shownNumber}<span class="pokemon-name-card">${name}</span></span>
                         </div>
-                        <img class="img-card-small" src="${img}" alt="">
-                        <img class="angle-left-small" src="./img/angle-left.svg" alt="">
-                        <img class="angle-right-small" src="./img/angle-right.svg" alt="">
+                        <div>
+                            <img class="img-card-small" src="${img}" alt="">
+                            <img class="angle-left-small" onclick="showPokemonBefore(${i})" src="./img/angle-left.svg" alt="">
+                            <img class="angle-right-small" onclick="showNextPokemon(${i})" src="./img/angle-right.svg" alt="">
+                        </div>
                     </div>
                     <!-- ---------------------------- end: small header ----------------------------- -->
                     <div class="round-edge" style="background: rgba(var(--color-${mainTyp}-gradient), 1)"></div>

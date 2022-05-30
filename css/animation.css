@@ -1,12 +1,80 @@
 .square {
-    animation: wipe-enter 1s infinite;
-  }
+  animation: wipe-enter 1s;
+}
 
 @keyframes wipe-enter {
-	0% {
-		transform: scale(0, .025);
-	}
-	50% {
-		transform: scale(1, .025);
-	}
+  0% {
+    height: 400px;
+  }
+  50% {
+    height: 200px;
+  }
+}
+
+/* ------------------------------ small header ------------------------------ */
+
+.angle-left-small {
+  position: absolute;
+  width: 16px;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.angle-left-small:hover {
+  opacity: 0.8;
+}
+
+.angle-right-small {
+  position: absolute;
+  width: 16px;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.3;
+  cursor: pointer;
+}
+
+.angle-right-small:hover {
+  opacity: 0.8;
+}
+
+/* -------------------------------- animation ------------------------------- */
+
+.small-card-header {
+  height: 108px;
+}
+
+.small-img-animation {
+  width: 88px;
+  height: 88px;
+  margin-top: 0;
+  animation: header 1s ease-in-out;
+}
+
+@keyframes header {
+  0% {
+    width: 264px;
+    height: 264px;
+    margin-top: 16px;
+  }
+
+  100% {
+    width: 88px;
+    height: 88px;
+  }
+}
+
+.small-header {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 8px 40px 8px 40px;
+}
+
+.back-icon-small{
+	top: 12px !important;
+	left: 50% !important;
 }
