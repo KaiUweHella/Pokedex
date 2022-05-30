@@ -397,6 +397,10 @@ h3 {
   cursor: pointer;
 }
 
+#big-header{
+  border-radius: 16px 16px 0 0;
+}
+
 .angle-right-varieties:hover {
   opacity: 0.9;
 }
@@ -408,6 +412,11 @@ h3 {
 /* ------------------------------ Small Devices ----------------------------- */
 
 @media only screen and (max-width: 420px) {
+
+  #big-header{
+    border-radius: 0;
+  }
+
   .pokemon-card {
     border-radius: 0;
     max-height: 100vh;
