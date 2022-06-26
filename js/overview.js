@@ -151,24 +151,7 @@ function loadStats(i) {
     let statName = pokemonStats.stat.name;
     let baseStatWidth = pokemonStats["base_stat"];
 
-    if (statName == "hp") {
-      statName = "KP";
-    }
-    if (statName == "attack") {
-      statName = "ANG";
-    }
-    if (statName == "defense") {
-      statName = "VERT";
-    }
-    if (statName == "special-attack") {
-      statName = "SP.-ANG";
-    }
-    if (statName == "special-defense") {
-      statName = "SP.-VERT";
-    }
-    if (statName == "speed") {
-      statName = "INIT";
-    }
+    newStatName = chooseStatName(statName);
 
     if (baseStat >= 100) {
       baseStatWidth = 100;
@@ -176,10 +159,31 @@ function loadStats(i) {
 
     document.getElementById("stats").innerHTML += statsHTML(
       baseStat,
-      statName,
+      newStatName,
       pokemonFirstCategory,
       baseStatWidth
     );
+  }
+}
+
+function chooseStatName(statName) {
+  if (statName == "hp") {
+    return (newStatName = "KP");
+  }
+  if (statName == "attack") {
+    return (newStatName = "ANG");
+  }
+  if (statName == "defense") {
+    return (newStatName = "VERT");
+  }
+  if (statName == "special-attack") {
+    return (newStatName = "SP.-ANG");
+  }
+  if (statName == "special-defense") {
+    return (newStatName = "SP.-VERT");
+  }
+  if (statName == "speed") {
+    return (newStatName = "INIT");
   }
 }
 
