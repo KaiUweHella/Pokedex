@@ -64,7 +64,7 @@ function loadEvolutionInName(responseAsJson) {
   if (evolution.chain["evolves_to"] != "") {
     let secondName = evolution.chain["evolves_to"][0].species.name;
     if (evolution.chain["evolves_to"][0]["evolves_to"] == "") {
-      let secondName = testArray(evolution);
+      let secondName = moreEvolutions(evolution);
       pokemonEvolution.push([
         {
           name: firstName,
@@ -90,7 +90,7 @@ function loadEvolutionInName(responseAsJson) {
   }
 }
 
-function testArray(evolution) {
+function moreEvolutions(evolution) {
   let secondName = [];
   for (let i = 0; i < evolution.chain["evolves_to"].length; i++) {
     const pokemonName = evolution.chain["evolves_to"][i].species.name;
@@ -145,7 +145,7 @@ function loadMoreEvolutionInName(responseAsJson) {
   if (evolution.chain["evolves_to"] != "") {
     let secondName = evolution.chain["evolves_to"][0].species.name;
     if (evolution.chain["evolves_to"][0]["evolves_to"] == "") {
-      let secondName = testArray(evolution);
+      let secondName = moreEvolutions(evolution);
       pokemonEvolution.push([
         {
           name: firstName,

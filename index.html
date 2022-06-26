@@ -7,11 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="./img/pikachu.png">
     <title>Pokedex</title>
-    <link rel="stylesheet" href="./css/fonts.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/card.css">
-    <link rel="stylesheet" href="./css/animation.css">
+    <link rel="stylesheet" href="./css/card.css">>
     <script src="./js/pokedex.js"></script>
+    <script src="./js/search.js"></script>
     <script src="./js/template.js"></script>
     <script src="./js/overview.js"></script>
 </head>
@@ -25,7 +28,7 @@
                     d="M15.757,14.719l-4.189-4.187A6.305,6.305,0,0,0,12.975,6.5a6.514,6.514,0,1,0-2.469,5.092l4.189,4.188a.864.864,0,0,0,.56.22.75.75,0,0,0,.53-.22A.73.73,0,0,0,15.757,14.719ZM1.5,6.5a5,5,0,1,1,5,5A5.007,5.007,0,0,1,1.5,6.5Z"
                     transform="translate(0)" fill="#666" />
             </svg>
-            <input type="text" placeholder="Englischer Name oder Id" id="input-search">
+            <input type="text" placeholder="Englischer Name oder Id" onkeydown="filterPosts()" id="input-search">
             <button class="btn-secondary" onclick="loadSearch()">Suchen</button>
         </div>
     </header>
@@ -38,7 +41,7 @@
         </div>
         <!-- Overview -->
     </div>
-    <div class="load-more-button" >
+    <div class="load-more-button">
         <button class="d-none btn-primary" id="load-more-btn" onclick="showMorePokemons()">Mehr laden</button>
         <div class="onload-gifs d-none" id="load-more-animation">
             <img src="./img/1.gif" alt="">
@@ -48,7 +51,7 @@
         </div>
     </div>
     <div class="overlay d-none" id="overlay">
-        
+
     </div>
     <script src="./js/animation.js"></script>
 </body>
